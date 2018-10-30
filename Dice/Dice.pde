@@ -7,6 +7,7 @@ Die sixDie;
 Die sevenDie;
 Die eightDie;
 Die nineDie;
+int diceTotal;
 
 void setup(){
   //no loop means that draw is only called once
@@ -25,19 +26,13 @@ void setup(){
    eightDie = new Die(230,115);
    nineDie = new Die(230,230);
    
-   
-    
-  //}
-  
-      for(int i = 0; i < 345;i+= 115){
-      for(int j = 0; j < 345; j+= 115){
-          println(i,j);
       }
-    }  
+      
     
-}
+
 
 void draw(){
+  background(#DE5C38);
   oneDie.show();
   twoDie.show();
   threeDie.show();
@@ -48,6 +43,13 @@ void draw(){
   eightDie.show();
   nineDie.show();
   
+  
+  
+  textSize(40);
+  text("The Dice total is: " + diceTotal, 25, 400);
+}
+
+void mousePressed(){
   oneDie.roll();
   twoDie.roll();
   threeDie.roll();
@@ -58,10 +60,9 @@ void draw(){
   eightDie.roll();
   nineDie.roll();
   
-}
-
-void mousePressed(){
   redraw();
+  
+  
 }
 
 
@@ -85,7 +86,8 @@ void mousePressed(){
 	//Simulate a roll of a die
 	void roll(){
 		 randomRoll = (int)(6 * Math.random()) + 1;
-    
+     
+     diceTotal = 0;
 	}
 	
 	/*
@@ -93,28 +95,33 @@ void mousePressed(){
 	*/
 	void show(){
   fill(225);
-  rect(x_pos,y_pos,100,100);
+  rect(x_pos,y_pos,100,100,25);
   fill(#951818);
   if(randomRoll == 1){
     ellipse(x_pos + 50, y_pos + 50, 20, 20);
+    diceTotal++;
   } else if (randomRoll == 2){
     ellipse(x_pos + 25, y_pos + 25, 20, 20);
     ellipse(x_pos + 75, y_pos + 75, 20, 20);
+        diceTotal += 2;
 	} else if (randomRoll == 3){
     ellipse(x_pos + 25, y_pos + 25, 20, 20);
     ellipse(x_pos + 50, y_pos + 50, 20,20);
     ellipse(x_pos + 75, y_pos + 75, 20, 20);
+        diceTotal += 3;
   } else if (randomRoll == 4){
     ellipse(x_pos + 25, y_pos + 25, 20, 20);
     ellipse(x_pos + 75, y_pos + 25, 20, 20);
     ellipse(x_pos + 25, y_pos + 75, 20, 20);
     ellipse(x_pos + 75, y_pos + 75, 20, 20);
+    diceTotal += 4;
   } else if (randomRoll == 5){
     ellipse(x_pos + 25, y_pos + 25, 20, 20);
     ellipse(x_pos + 75, y_pos + 25, 20, 20);
     ellipse(x_pos + 50, y_pos + 50, 20, 20);
     ellipse(x_pos + 25, y_pos + 75, 20, 20);
     ellipse(x_pos + 75, y_pos + 75, 20, 20);
+    diceTotal += 5;
   } else {
     ellipse(x_pos + 25, y_pos + 25, 20, 20);
     ellipse(x_pos + 75, y_pos + 25, 20, 20);
@@ -122,6 +129,7 @@ void mousePressed(){
     ellipse(x_pos + 75, y_pos + 50, 20, 20);
     ellipse(x_pos + 25, y_pos + 75, 20, 20);
     ellipse(x_pos + 75, y_pos + 75, 20, 20);
+    diceTotal += 6;
     }
   }
  }
